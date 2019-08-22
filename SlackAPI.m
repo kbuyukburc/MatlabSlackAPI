@@ -72,7 +72,7 @@ classdef SlackAPI < handle
         function status = UploadFile(obj, channel, FilePath)
             www = "https://slack.com/api/files.upload?token=" + obj.ID + ...
                 "&channels=" + channel + "&pretty=1";
-            status = Upload(www,FilePath);
+            status = obj.Upload(www,FilePath);
         end
     end
     methods(Access = public)
@@ -143,6 +143,17 @@ classdef SlackAPI < handle
             resp = obj.JSON_request(www, nan);
             status = resp.ok;
             list = resp.channels;
+            for i = 1:length(list)
+                if strcmp(list(i).name, channel)
+                    id = list(i).id;
+                    return;
+                end
+            end
+            id = nan;
+            www = 'https://slack.com/api/groups.list';
+            resp = obj.JSON_request(www, nan);
+            status = resp.ok;
+            list = resp.groups;
             for i = 1:length(list)
                 if strcmp(list(i).name, channel)
                     id = list(i).id;
