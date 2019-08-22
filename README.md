@@ -18,6 +18,6 @@
 ```
 >>api = SlackAPI('xoxp-XXXXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXX')
 >>SendMsg(api, '@kbuyukburc', 'Hello World')
->>SendMsg(api,'#genral','Hello Glaxy')
+>>SendMsg(api,'#general','Hello Glaxy')
 >>SendFile(api,'#general','test.jpg')
 ```
